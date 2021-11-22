@@ -65,12 +65,41 @@ postIndex();
 function postIndex (){
     for(let i = 0; i < posts.length; i++)
     generatePost(posts[i]);
+    
 }
 
 function generatePost(array){
     const {id,content,media,author,name,image,likes,created} = posts;
     const container = document.getElementById('container');
     const revertedDate = array.created.split('-').reverse().join();
+       
+    const newArray =  array.author.name.split(' ');
+    initials(newArray)
+
+    function initials (){
+    // console.log(newArray);
+    const immagineProfilo = array.author.image;
+    let min ='';
+    let splitedInit = '';
+    for(
+        let k = 0; k < newArray.length; k++){
+        min = newArray[k];
+        splitedInit += min[0];
+        console.log(splitedInit)
+        if(immagineProfilo == null){
+            document.querySelector('.post-meta__author').innerHTML = '';
+            document.querySelector('.post-meta__icon').innerHTML =  splitedInit;
+        }
+    }
+
+
+}
+
+
+
+// if(immagineProfilo === null){
+//     document.querySelector('.post-meta__icon').innerHTML = initials();
+// }
     container.innerHTML +=
     `
             <div class="post">
@@ -106,27 +135,8 @@ function generatePost(array){
 
         
         `;
-        
-        const newArray =  array.author.name.split(' ');
-        initials(newArray)
-
-        function initials (n){
-        // console.log(newArray);
-        let min ='';
-        let splitedInit = '';
-        for(let k = 0; k < newArray.length; k++){
-            min = n[k];
-            // console.log(min);
-            for(let j = 0; j < min.length; j++){
-                // console.log(min[j])
-                splitedInit = min[0];
-                console.log(splitedInit);
-            }
-        }
-        
-        return splitedInit;
-    }
-
-    }
+     
     
+}
+
 
