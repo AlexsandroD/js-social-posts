@@ -64,6 +64,9 @@ postIndex();
 function postIndex (){
     for(let i = 0; i < posts.length; i++)
     generatePost(posts[i]);
+    document.querySelector('.likes').addEventListener('click', function(event){
+        event.preventDefault(incrementButton());
+    });
 }
 
 function generatePost(array){
@@ -89,7 +92,7 @@ function generatePost(array){
             <div class="post__footer">
                 <div class="likes js-likes">
                     <div class="likes__cta">
-                        <a class="like-button  js-like-button" href="#" data-postid="1">
+                        <a class="like-button  js-like-button" data-postid="${array.id}">
                             <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
                             <span class="like-button__label">Mi Piace</span>
                         </a>
@@ -103,9 +106,8 @@ function generatePost(array){
 
         
         `;
-        document.querySelector('.likes').addEventListener('click', function(event){
-            event.preventDefault(incrementButton());
-        });
+    
+  
     }
     
 function incrementButton(){
@@ -114,3 +116,11 @@ function incrementButton(){
    ++incremento.innerText;
 };
 
+
+// const today = new Date();
+// const dd = String(today.getDate()).padStart(2, '0');
+// const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+// let yyyy = today.getFullYear();
+
+// today = mm + '/' + dd + '/' + yyyy;
+// document.write(today);
