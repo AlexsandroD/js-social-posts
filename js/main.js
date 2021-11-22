@@ -52,7 +52,7 @@ const posts = [
             "image": "https://unsplash.it/300/300?image=29"
         },
         "likes": 95,
-        "created": "05-03-2021"
+        "created": "2021-03-05"
     }
 ];
 
@@ -71,6 +71,8 @@ function postIndex (){
 
 function generatePost(array){
     const container = document.getElementById('container');
+    const toSplit = array.created.split('-').reverse().join();
+    console.log(toSplit);
     container.innerHTML +=
     `
             <div class="post">
@@ -81,7 +83,7 @@ function generatePost(array){
                     </div>
                     <div class="post-meta__data">
                         <div class="post-meta__author">${array.author.name}</div>
-                        <div class="post-meta__time">${array.created}</div>
+                        <div class="post-meta__time">${toSplit}</div>
                     </div>                    
                 </div>
             </div>
@@ -117,10 +119,3 @@ function incrementButton(){
 };
 
 
-// const today = new Date();
-// const dd = String(today.getDate()).padStart(2, '0');
-// const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-// let yyyy = today.getFullYear();
-
-// today = mm + '/' + dd + '/' + yyyy;
-// document.write(today);
