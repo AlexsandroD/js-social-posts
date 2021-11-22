@@ -58,21 +58,19 @@ const posts = [
 
 
 
+
 postIndex();
 
 // const {id,content,media,author,name,image,likes,created} = posts;
 function postIndex (){
     for(let i = 0; i < posts.length; i++)
     generatePost(posts[i]);
-    document.querySelector('.likes').addEventListener('click', function(event){
-        event.preventDefault(incrementButton());
-    });
 }
 
 function generatePost(array){
+    const {id,content,media,author,name,image,likes,created} = posts;
     const container = document.getElementById('container');
-    const toSplit = array.created.split('-').reverse().join();
-    console.log(toSplit);
+    const revertedDate = array.created.split('-').reverse().join();
     container.innerHTML +=
     `
             <div class="post">
@@ -83,7 +81,7 @@ function generatePost(array){
                     </div>
                     <div class="post-meta__data">
                         <div class="post-meta__author">${array.author.name}</div>
-                        <div class="post-meta__time">${toSplit}</div>
+                        <div class="post-meta__time">${revertedDate}</div>
                     </div>                    
                 </div>
             </div>
@@ -108,14 +106,27 @@ function generatePost(array){
 
         
         `;
-    
-  
+        
+        const newArray =  array.author.name.split(' ');
+        initials(newArray)
+
+        function initials (n){
+        // console.log(newArray);
+        let min ='';
+        let splitedInit = '';
+        for(let k = 0; k < newArray.length; k++){
+            min = n[k];
+            // console.log(min);
+            for(let j = 0; j < min.length; j++){
+                // console.log(min[j])
+                splitedInit = min[0];
+                console.log(splitedInit);
+            }
+        }
+        
+        return splitedInit;
+    }
+
     }
     
-function incrementButton(){
-   let incremento =  document.getElementById('like-counter-1');
-   console.log(incremento)
-   ++incremento.innerText;
-};
-
 
