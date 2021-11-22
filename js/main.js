@@ -1,5 +1,4 @@
-const posts = [
-    {
+const posts = [{
         "id": 1,
         "content": "Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.",
         "media": "https://unsplash.it/600/300?image=171",
@@ -62,72 +61,62 @@ const posts = [
 postIndex();
 
 // const {id,content,media,author,name,image,likes,created} = posts;
-function postIndex (){
-    for(let i = 0; i < posts.length; i++)
-    generatePost(posts[i]);
+function postIndex() {
+    for (let i = 0; i < posts.length; i++)
+        generatePost(posts[i]);
+
+}
+
+
+
+// funzione per creare i post 
+function generatePost(element) {
+    // const {
+    //     id,
+    //     content,
+    //     media,
+    //     author,
+    //     name,
+    //     image,
+    //     likes,
+    //     created
+    // } = posts;
+
     
-}
-
-function generatePost(array){
-    const {id,content,media,author,name,image,likes,created} = posts;
     const container = document.getElementById('container');
-    const revertedDate = array.created.split('-').reverse().join();
-       
-    const newArray =  array.author.name.split(' ');
-    initials(newArray)
-
-    function initials (){
-    // console.log(newArray);
-    const immagineProfilo = array.author.image;
-    let min ='';
-    let splitedInit = '';
-    for(
-        let k = 0; k < newArray.length; k++){
-        min = newArray[k];
-        splitedInit += min[0];
-        console.log(splitedInit)
-        if(immagineProfilo == null){
-            document.querySelector('.post-meta__author').innerHTML = '';
-            document.querySelector('.post-meta__icon').innerHTML =  splitedInit;
-        }
-    }
-
-
-}
+    const revertedDate = element.created.split('-').reverse().join();
 
 
 
-// if(immagineProfilo === null){
-//     document.querySelector('.post-meta__icon').innerHTML = initials();
-// }
+    // qui si riempie il dom 
     container.innerHTML +=
-    `
+        `
             <div class="post">
-            <div id='${array.id}' class="post__header">
+            <div id='${element.id}' class="post__header">
                 <div class="post-meta">                    
                     <div class="post-meta__icon">
-                        <img class="profile-pic" src="${array.author.image}">                    
+                        <img class="profile-pic" src="${element.author.image}" alt='${initials(element)}'>                    
                     </div>
                     <div class="post-meta__data">
-                        <div class="post-meta__author">${array.author.name}</div>
+                        <div class="post-meta__author">${element.author.name}</div>
                         <div class="post-meta__time">${revertedDate}</div>
                     </div>                    
                 </div>
             </div>
-            <div class="post__text">${array.content}</div>
+            <div class="post__text">${element.content}</div>
             <div class="post__image">
-                <img src="${array.media}"alt="">
+                <img src="${element.media}"alt="">
             </div>
             <div class="post__footer">
                 <div class="likes js-likes">
                     <div class="likes__cta">
-                        <a class="like-button  js-like-button" data-postid="${array.id}">
+                        <a class="like-button  js-like-button" data-postid="${element.id}">
                             <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
                             <span class="like-button__label">Mi Piace</span>
                         </a>
                     </div>
                     <div class="likes__counter">
-                        Piace a <b id="like-counter-${array.id}" class="js-likes-counter">${array.likes}</b> persone
+                        Piace a <b id="like-counter-${element.id}" class="js-likes-counter">${element.likes}</b> persone
                     </div>
                 </div> 
             </div>            
@@ -135,8 +124,24 @@ function generatePost(array){
 
         
         `;
-     
-    
+
+
 }
+ // qui splitto l'array del nome in modo fa potermi prendere le iniziali 
+function initials(element){
 
 
+    const newArray = element.author.name.split(' ');
+    const immagineProfilo = element.author.image;
+    let min = '';
+    let splitedInit = '';
+    for (
+        let k = 0; k < newArray.length; k++) {
+        min = newArray[k];
+        splitedInit += min[0];
+        console.log(splitedInit)
+      
+    }
+
+    return splitedInit;
+}

@@ -65,7 +65,18 @@ h1 {
 .profile-pic {
     border-radius: 50%;
     max-width: 60px;
+    background-color: gray;
+    width:60px;
+    line-height: 60px;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
 }
+    
+
+
+
+
 
 .profile-pic-default {
     display: flex;
@@ -125,6 +136,3 @@ h1 {
 }
 
 
-.yellow{
-    background-color: yellow;
-}
